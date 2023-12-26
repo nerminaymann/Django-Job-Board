@@ -1,4 +1,4 @@
-[JOB]:
+JOB:   (App)
 -->Components
 - title
 - location 
@@ -17,7 +17,7 @@
 - apply job
 - post job
 
-[BLOG]:
+BLOG:     (APP)
 -->Components
 - title
 - desc
@@ -32,5 +32,11 @@
 - comment
 - recent_posts
 
-[CONTACT]:
+CONTACT:        (APP)
 -->Components**
+
+
+HOME:           (APP)
+
+
+LOGIN:ACCOUNTS         (APP)
