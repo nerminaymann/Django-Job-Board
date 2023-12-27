@@ -2,7 +2,7 @@ JOB:   (App)
 -->Components
 - title
 - location 
-- job_type/ job_nature (part/full)
+- job_type/ job_nature (part/full) )(Remote/ onsite/ Hybrid)
 - desc
 - published_at
 - vacancy
