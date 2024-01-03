@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block body %}
+    <div class="bradcam_area bradcam_bg_1">
+    <div class="container">
+    <div class="row">
+    <div class="col-xl-12">
+    <div class="bradcam_text">
+    <h3> Post A Job</h3>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+    <div class="job_details_area">
+    <div class="container">
+    <div class="row">
+    <div class="col-lg-9 mx-auto">
+    <div class="job_details_header">
+    <div class="single_jobs white-bg d-flex justify-content-between">
+    <div class="jobs_left d-flex align-items-center">
+
+    <div class="jobs_conetent">
+    <a href="#"><h4>Add New Job Here</h4></a>
+{#    <div class="links_locat d-flex align-items-center">#}
+{#        #}
+{#    </div>#}
+    </div>
+    </div>
+
+    </div>
+    </div>
+    <div class="post_job_form white-bg">
+    <form action="#" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+      {% bootstrap_form form %}
+      {% buttons %}
+        <button type="submit" class="boxed-btn3 w-100">
+          Post
+        </button>
+      {% endbuttons %}
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+{% endblock body %}
