@@ -19,7 +19,6 @@ def Uploaded_Images(instance, filename):
     imgName , extension=filename.split('.')
     return 'job_images/'+instance.title+'.'+extension
 
-
 class Job(models.Model):
     owner = models.ForeignKey(User,on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
@@ -53,7 +52,7 @@ class Apply(models.Model):
     name= models.CharField(max_length=50,null=False)
     email = models.EmailField(max_length=50,null=False)
     website = models.URLField(max_length=100,blank=True)
-    cv= models.FileField(upload_to='User Resumes',null=False, blank=False)
+    cv= models.FileField(upload_to='Apply Resumes',null=False, blank=False)
     cover_letter=models.TextField(max_length=500)
     created_at = models.DateTimeField(auto_now=True)
 

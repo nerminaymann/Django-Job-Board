@@ -35,6 +35,7 @@ def Job_Detail(request,slug):
         if form.is_valid():
             my_form = form.save(commit=False)
             my_form.job=job
+            my_form.user_id=request.user.id
             my_form.save()
             print("donee22")
     else:

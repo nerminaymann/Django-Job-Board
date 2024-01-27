@@ -1,0 +1,297 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+
+{% block body %}
+    <div class="container-fluid overcover">
+        <div class="container profile-box">
+            <div class="bradcam_area bradcam_bg_1" >
+                <div class="container" >
+                    <div class="row" style="margin: auto;">
+                        <div class="col-xl-12" >
+                            <div class="image-box" >
+                                <img src="{{ profile.profile_pic.url }}" style="align-content: center; height: 140px; width: 20%; border-radius: 10%; border: 5px solid #ddd;"  alt="">
+
+                            </div>
+                            <div class="bradcam_text">
+                            <h3>{{profile.name}}</h3>
+                            <h1>{{ profile.position }}</h1>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="about" class="home row">
+                <div class="social-links" style="margin: 2%;">
+                                {% if profile.resume %}
+                                    <a href="{{ profile.resume.url }}"><i class="resume" style="background-color: #122b40;
+                                      color: white;
+                                      border-radius: 10%;
+                                      padding: 4px 10px;
+                                      text-align: center;
+                                      text-decoration: none;
+                                      display: inline-block;">CV</i></a>
+                                {% endif %}
+
+                                <a href="{{ profile.facebook_website }}"><i class="fab fa-facebook-f" style="background-color: white;
+                                  color: black;
+                                  border-radius: 25%;
+                                  border: 4px solid #122b40;
+                                  padding: 4px 10px;
+                                  text-align: center;
+                                  text-decoration: none;
+                                  display: inline-block;">Facebook</i></a>
+                                <a href="{{ profile.linkedin_website }}"> <i class="fab fa-linkedin-in" style="background-color: white;
+                                  color: black;
+                                  border-radius: 25%;
+                                  border: 4px solid #122b40;
+                                  padding: 4px 10px;
+                                  text-align: center;
+                                  text-decoration: none;
+                                  display: inline-block;">LinkedIn</i></a>
+                                <a href="{{ profile.github_website}}"><i class="fab fa-github" style="background-color: white;
+                                  color: black;
+                                  border-radius: 25%;
+                                  border: 4px solid #122b40;
+                                  padding: 4px 10px;
+                                  text-align: center;
+                                  text-decoration: none;
+                                  display: inline-block;">GitHub</i></a>
+                </div>
+
+
+            </div>
+            <br>
+            <div class="basic-detail row">
+                <div class="col-md-8 detail-col">
+                    <h2>About Me</h2>
+                    <p>{{ profile.summary }}</p>
+                </div>
+            </div>
+            <br>
+
+            <section id="profile" class="home-dat">
+                <div class="row no-margin home-det">
+
+                    <div class="col-md-12 home-dat">
+
+{#                        <div class="links">#}
+{#                            <div class="row ">#}
+{#                                <div class="col-xl-6 col-md-12">#}
+{#                                    <ul class="btn-link">#}
+{#                                        <li>#}
+{#                                            <a href="{{ profile.resume }}"><i class="fas fa-cloud-download-alt"></i> Download Resume</a>#}
+{#                                        </li>#}
+{#                                    </ul>#}
+{#                                </div>#}
+{##}
+{#                                <div class="col-xl-6 col-md-12">#}
+{#                                    <ul class="social-link">#}
+{#                                        <li><i class="fab fa-facebook-f"></i></li>#}
+{#                                        <li><i class="fab fa-github"></i></li>#}
+{#                                        <li><i class="fab fa-linkedin-in"></i></li>#}
+{#                                        #}
+{#                                    </ul>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+                        <div class="jumbo-address">
+                            <div class="row no-margin" style="border: 2px solid green;">
+                                <div class="col-lg-6 no-padding" >
+
+                                    <table class="addrss-list" >
+                                        <tbody>
+                                            <tr>
+                                                <th>Position:</th>
+                                                <td>{{ profile.position }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Mobile No:</th>
+                                                <td>{{ profile.phone_number }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>City:</th>
+                                                <td>{{ profile.city }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Date of birth:</th>
+                                                <td>{{ profile.birthday }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <div class="col-lg-6 no-padding" >
+                                    <table class="addrss-list">
+                                        <tbody>
+                                            <tr>
+                                                <th>Experiance:</th>
+                                                <td>{{ profile.experience }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Email Address:</th>
+                                                <td>{{ profile.user.email }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Resume:</th>
+                                                {% if profile.resume %}
+                                                   <td><a href="{{ profile.resume.url }}"><i>{{ profile.name}}.pdf</i></a></td>
+                                                {% else %}
+                                                   <td>None</td>
+                                                {% endif %}
+                                            </tr>
+                                            <tr>
+                                                <th>age:</th>
+                                                <td>{{ profile.age}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <br>
+            <br>
+            <section id="resume" class="education-detail">
+                <div class="sec-title">
+                    <h2>Education Details</h2>
+                </div>
+                <div class="service no-margin row" style="margin: 1%;">
+
+                    <div class="col-sm-9 rgbf">
+                        <h5>{{ profile.education}}</h5>
+{#                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>#}
+                    </div>
+                </div>
+            </section>
+            <br>
+            <br>
+
+            <section id="skills" class="profile-tab">
+                <div class="sec-title">
+                    <h2>Skills</h2>
+                </div>
+                <div class="row service-ro no-margin">
+                    <div class="col-lg-4 col-md-6 singe-servic">
+                        <i class="fab fa-delicious"></i>
+                        <h5>{{ profile.skills}}</h5>
+{#                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>#}
+                    </div>
+{#                    <div class="col-lg-4 col-md-6 singe-servic">#}
+{#                        <i class="fas fa-code"></i>#}
+{#                        <h4>Website Design</h4>#}
+{#                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>#}
+{#                    </div>#}
+{#                    <div class="col-lg-4 col-md-6 singe-servic">#}
+{#                        <i class="fab fa-chrome"></i>#}
+{#                        <h4>Web Development</h4>#}
+{#                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>#}
+{#                    </div>#}
+{#                    <div class="col-lg-4 col-md-6 singe-servic">#}
+{#                        <i class="fab fa-android"></i>#}
+{#                        <h4>Android Development</h4>#}
+{#                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>#}
+{#                    </div>#}
+{#                    <div class="col-lg-4 col-md-6 singe-servic">#}
+{#                        <i class="fab fa-app-store-ios"></i>#}
+{#                        <h4>IOS Design</h4>#}
+{#                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>#}
+{#                    </div>#}
+{#                    <div class="col-lg-4 col-md-6 singe-servic">#}
+{#                        <i class="fas fa-mobile-alt"></i>#}
+{#                        <h4>Ionic Development</h4>#}
+{#                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>#}
+{#                    </div>#}
+                </div>
+            </section>
+        <br>
+        <br>
+            <div class="update_right" >
+                    <div class="update_now">
+                    <a href="{% url 'update_profile' %}" class="boxed-btn3 w-50 gj-margin-left-10">Update Profile</a>
+                    </div>
+            </div>
+            <br>
+
+{#            <div id="portfolio" class="portfolio-detail">#}
+{#                <div class="row no-margin gallery">#}
+{#                    <div class="col-sm-4">#}
+{#                        <img src="assets/images/gallery/gallery_01.jpg" alt="">#}
+{#                    </div>#}
+{#                    <div class="col-sm-4">#}
+{#                        <img src="assets/images/gallery/gallery_02.jpg" alt="">#}
+{#                    </div>#}
+{#                    <div class="col-sm-4">#}
+{#                        <img src="assets/images/gallery/gallery_03.jpg" alt="">#}
+{#                    </div>#}
+{#                    <div class="col-sm-4">#}
+{#                        <img src="assets/images/gallery/gallery_04.jpg" alt="">#}
+{#                    </div>#}
+{#                    <div class="col-sm-4">#}
+{#                        <img src="assets/images/gallery/gallery_05.jpg" alt="">#}
+{#                    </div>#}
+{#                    <div class="col-sm-4">#}
+{#                        <img src="assets/images/gallery/gallery_06.jpg" alt="">#}
+{#                    </div>#}
+{#                    <div class="col-sm-4">#}
+{#                        <img src="assets/images/gallery/gallery_10.jpg" alt="">#}
+{#                    </div>#}
+{#                    <div class="col-sm-4">#}
+{#                        <img src="assets/images/gallery/gallery_08.jpg" alt="">#}
+{#                    </div>#}
+{#                    <div class="col-sm-4">#}
+{#                        <img src="assets/images/gallery/gallery_09.jpg" alt="">#}
+{#                    </div>#}
+{##}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#            <section id="contact" class="contact-tab">#}
+{#                <div class="row no-margin">#}
+{#                    <div class="col-md-6 no-padding">#}
+{#                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3176144.0450019627!2d-107.79423426090409!3d38.97644533805396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x874014749b1856b7%3A0xc75483314990a7ff!2sColorado%2C+USA!5e0!3m2!1sen!2sin!4v1547222354537" frameborder="0" style="border:0" allowfullscreen></iframe>#}
+{#                    </div>#}
+{#                    <div class="col-md-6">#}
+{#                        <div class="row cont-row no-margin">#}
+{#                            <div class="col-sm-6">#}
+{#                                <input placeholder="Enter Full Name" type="text" class="form-control form-control-sm">#}
+{#                            </div>#}
+{#                            <div class="col-sm-6">#}
+{#                                <input placeholder="Enter Email Address" type="text" class="form-control form-control-sm">#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="row cont-row no-margin">#}
+{#                            <div class="col-sm-6">#}
+{#                                <input placeholder="Enter Mobile Number" type="text" class="form-control form-control-sm">#}
+{#                            </div>#}
+{##}
+{#                        </div>#}
+{#                        <div class="row cont-row no-margin">#}
+{#                            <div class="col-sm-12">#}
+{#                                <textarea placeholder="Enter your Message" class="form-control form-control-sm" rows="10"></textarea>#}
+{#                            </div>#}
+{##}
+{#                        </div>#}
+{#                        <div class="row cont-row no-margin">#}
+{#                            <div class="col-sm-6">#}
+{#                                <button class="btn btn-sm btn-success">Send Message</button>#}
+{#                            </div>#}
+{##}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </section>#}
+        </div>
+    </div>
+{% endblock %}
+
+
+
+

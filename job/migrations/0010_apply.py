@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=50)),
                 ('email', models.EmailField(max_length=50)),
                 ('website', models.URLField(blank=True, max_length=100)),
-                ('cv', models.FileField(upload_to='User Resumes')),
+                ('cv', models.FileField(upload_to='Apply Resumes')),
                 ('cover_letter', models.TextField(max_length=500)),
                 ('created_at', models.DateTimeField(auto_now=True)),
                 ('job_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='job.job')),
