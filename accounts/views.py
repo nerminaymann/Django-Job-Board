@@ -56,11 +56,13 @@ def index(request):
     return render(request,'base.html',{'profile': profile})
 
 # ---------------------------PROFILE PAGE--------------------------
+@login_required(login_url='login')
 def Get_Profile(request):
     #to return the current user who's log in the website
     profile = Profile.objects.get(user=request.user)
     return render(request,'accounts/profile.html',{'profile': profile})
 
+@login_required(login_url='login')
 def Update_Profile(request):
     profile = Profile.objects.get(user=request.user)
     # user_profile = Profile.objects.get(user=request.user)

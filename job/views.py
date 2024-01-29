@@ -3,25 +3,48 @@ from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from django.urls import reverse
 from accounts.models import Profile
-from .models import Job
+from .filters import JobFilter
+from .models import Job, Category
 from .forms import ApplyForm,JobForm
-
+from .filters import JobFilter
 # Create your views here.
 
 @login_required(login_url='login')
 def Job_List(request):
     jobs= Job.objects.all()
     profile= Profile.objects.get(user=request.user)
+    categories= Category.objects.all()
+
+    #Filters
+    myfilter = JobFilter(request.GET, queryset=jobs)
+    if myfilter.is_valid():
+        jobs = myfilter.qs
     #SHOW 4 JOBS PER PAGE
     paginator=Paginator(jobs,4)
     page_number=request.GET.get('page')
     page_obj=paginator.get_page(page_number)
 
     context = {
-               'jobs':page_obj,
-               'profile':profile
+        'jobs': page_obj,
+        'profile': profile,
+        'categories': categories,
+        'myfilter':myfilter,
+
                }
     return render(request,'job/job_list.html',context)
+
+# @login_required(login_url='login')
+# def Filter_Jobs(request,category):
+#     jobs= Job.objects.filter(category__id=category)
+#     profile= Profile.objects.get(user=request.user)
+#     paginator = Paginator(jobs, 4)
+#     page_number = request.GET.get('page')
+#     page_obj = paginator.get_page(page_number)
+#     context = {
+#         'jobs': page_obj,
+#         'profile': profile,
+#     }
+#     return render(request, 'job/job_list.html', context)
 
 # def Job_Detail(request,id):
 #     job = Job.objects.filter(id=id).first()
