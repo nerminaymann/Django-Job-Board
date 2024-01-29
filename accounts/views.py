@@ -26,6 +26,11 @@ def SignUp(request):
         context = {'form': form}
         return render(request, 'registration/signup.html', context)
 
+# @login_required(login_url='login')
+# def logout(request):
+#     auth.logout(request)
+#     return render(request,'registration/logout.html')
+
 # def login(request):
 #     if request.method == 'POST':
 #          form = SignInForm(request.POST)
@@ -44,8 +49,13 @@ def SignUp(request):
 #     context = {'form': form}
 #     return render(request,'registration/login.html',context)
 
-# ---------------------------PROFILE PAGE--------------------------
 
+# ---------------------------BASE--------------------------
+def index(request):
+    profile = Profile.objects.get(user=request.user)
+    return render(request,'base.html',{'profile': profile})
+
+# ---------------------------PROFILE PAGE--------------------------
 def Get_Profile(request):
     #to return the current user who's log in the website
     profile = Profile.objects.get(user=request.user)

@@ -1,22 +1,25 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from django.urls import reverse
-
+from accounts.models import Profile
 from .models import Job
 from .forms import ApplyForm,JobForm
 
 # Create your views here.
 
+@login_required(login_url='login')
 def Job_List(request):
     jobs= Job.objects.all()
-
+    profile= Profile.objects.get(user=request.user)
     #SHOW 4 JOBS PER PAGE
     paginator=Paginator(jobs,4)
     page_number=request.GET.get('page')
     page_obj=paginator.get_page(page_number)
 
     context = {
-               'jobs':page_obj
+               'jobs':page_obj,
+               'profile':profile
                }
     return render(request,'job/job_list.html',context)
 
@@ -27,7 +30,9 @@ def Job_List(request):
 #     context = {'job': job}
 #     return render(request, 'job/job_detail.html', context)
 
+@login_required(login_url='login')
 def Job_Detail(request,slug):
+    profile= Profile.objects.get(user=request.user)
     job = Job.objects.filter(slug=slug).first()
     if request.method == 'POST':
         form = ApplyForm(request.POST,files=request.FILES)
@@ -40,10 +45,12 @@ def Job_Detail(request,slug):
             print("donee22")
     else:
         form = ApplyForm()
-    context = {'job': job,'form':form}
+    context = {'job': job,'form':form,'profile':profile}
     return render(request, 'job/job_detail.html', context)
 
+@login_required(login_url='login')
 def Post_Job(request):
+    profile= Profile.objects.get(user=request.user)
     if request.method == 'POST':
         form = JobForm(request.POST,files=request.FILES)
 
@@ -54,5 +61,5 @@ def Post_Job(request):
             return redirect(reverse("Job_List"))
     else:
         form = JobForm()
-    context = {'form':form}
+    context = {'form':form,'profile':profile}
     return render(request, 'job/post_job.html', context)
