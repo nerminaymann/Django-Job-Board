@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load bootstrap4 %}
 {% load static %}
 {% block body %}
         <div class="bradcam_area bradcam_bg_1">
@@ -25,7 +26,8 @@
 {#        filter    #}
         <h3>Filter</h3>
         <form method="GET">
-            {{ myfilter.form }}
+            {% csrf_token %}
+            {% bootstrap_form myfilter.form %}
             <input type="submit" value="search" class="boxed-btn3 w-100 mt-2">
 
 {#        <div class="row">#}
@@ -113,12 +115,12 @@
         </div>
         <div class="col-md-6">
         <div class="search_cat d-flex justify-content-end">
-        <select>
-        <option data-display="Most Recent">Most Recent</option>
-        <option value="1">Backend Developer</option>
-        <option value="2">Flutter Developer </option>
-        <option value="4">Front-end engineer</option>
-        </select>
+{#        <select>#}
+{#        <option data-display="Most Recent">Most Recent</option>#}
+{#        <option value="1">Backend Developer</option>#}
+{#        <option value="2">Flutter Developer </option>#}
+{#        <option value="4">Front-end engineer</option>#}
+{#        </select>#}
         </div>
         </div>
         </div>

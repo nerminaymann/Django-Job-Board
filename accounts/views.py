@@ -81,6 +81,6 @@ def Update_Profile(request):
         profile_form = ProfileForm(instance=profile)
 
 
-    context = {'profile_form': profile_form, 'user_form': user_form}
+    context = {'profile_form': profile_form, 'user_form': user_form,'profile': profile}
     return render(request, 'accounts/update_profile.html', context)
 
