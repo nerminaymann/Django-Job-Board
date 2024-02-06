@@ -10,7 +10,7 @@ from .filters import JobFilter
 # Create your views here.
 
 @login_required(login_url='login')
-def Job_List(request):
+def Job_List(request,myfilterr):
     jobs= Job.objects.all()
     profile= Profile.objects.get(user=request.user)
     categories= Category.objects.all()
@@ -18,7 +18,8 @@ def Job_List(request):
     #Filters
     myfilter = JobFilter(request.GET, queryset=jobs)
     if myfilter.is_valid():
-        jobs = myfilter.qs
+        myfilterr= myfilter
+        jobs = myfilterr.qs
     #SHOW 4 JOBS PER PAGE
     paginator=Paginator(jobs,4)
     page_number=request.GET.get('page')

@@ -10,4 +10,4 @@ class JobFilter(django_filters.FilterSet):
 
     class Meta:
         model = Job
-        fields = ['title', 'desc','job_nature','job_type','category']
+        fields = ['title', 'desc','job_nature','job_type','category','location']

@@ -22,7 +22,7 @@ def Uploaded_Images(instance, filename):
 class Job(models.Model):
     owner = models.ForeignKey(User,on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
-    # location =
+    location = models.CharField(max_length=50)
     job_type = models.CharField(max_length=30,choices=Job_Type,default='')
     job_nature = models.CharField(max_length=30,choices=Job_Nature,default='')
     desc = models.TextField(max_length=1000)
