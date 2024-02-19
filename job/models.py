@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Count
 from django.utils.text import slugify
 from django.contrib.auth.models import User
 
@@ -37,6 +38,9 @@ class Job(models.Model):
     #IF I WANTED TO UPLOAD THE IMAGE IN THE PATH 'media/job_images/ewfh.jpg
     # job_img = models.ImageField(upload_to='job_images')
 
+    def count_jobs_of(category):
+        return Job.objects.filter(category=category).count()
+
     #OVERRIVE SAVE METHOD: BEFORE COMPLETING THE SAVE OF CREATING RECORD
     #ADD THE TITLE TO SLUG FIELD AND SLUGIFY IT : PUT(-) BETWEEN TWO WORDS
     def save(self, *args, **kwargs):
@@ -45,6 +49,10 @@ class Job(models.Model):
 
     def __str__(self):
         return self.title
+
+# Category.objects.annotate(
+#     items_count=Count('category__job')
+# )
 
 class Apply(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)

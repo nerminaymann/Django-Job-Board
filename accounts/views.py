@@ -63,6 +63,12 @@ def Get_Profile(request):
     return render(request,'accounts/profile.html',{'profile': profile})
 
 @login_required(login_url='login')
+def Get_Others_Profile(request,profile):
+    #to return the current user who's log in the website
+    profile = Profile.objects.get(user=profile)
+    return render(request,'accounts/profile.html',{'other_profile': profile})
+
+@login_required(login_url='login')
 def Update_Profile(request):
     profile = Profile.objects.get(user=request.user)
     # user_profile = Profile.objects.get(user=request.user)

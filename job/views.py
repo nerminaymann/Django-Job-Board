@@ -3,14 +3,13 @@ from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from django.urls import reverse
 from accounts.models import Profile
-from .filters import JobFilter
 from .models import Job, Category
 from .forms import ApplyForm,JobForm
 from .filters import JobFilter
 # Create your views here.
 
 @login_required(login_url='login')
-def Job_List(request,myfilterr):
+def Job_List(request):
     jobs= Job.objects.all()
     profile= Profile.objects.get(user=request.user)
     categories= Category.objects.all()
@@ -18,8 +17,8 @@ def Job_List(request,myfilterr):
     #Filters
     myfilter = JobFilter(request.GET, queryset=jobs)
     if myfilter.is_valid():
-        myfilterr= myfilter
-        jobs = myfilterr.qs
+        # myfilterr= myfilter
+        jobs = myfilter.qs
     #SHOW 4 JOBS PER PAGE
     paginator=Paginator(jobs,4)
     page_number=request.GET.get('page')
@@ -30,7 +29,6 @@ def Job_List(request,myfilterr):
         'profile': profile,
         'categories': categories,
         'myfilter':myfilter,
-
                }
     return render(request,'job/job_list.html',context)
 
