@@ -10,6 +10,7 @@ from .models import Information
 @login_required(login_url='login')
 def Send_Message(request):
     profile=Profile.objects.get(user=request.user)
+    user_profile = Profile.objects.get(user=request.user)
     info=Information.objects.first()
     if request.method == 'POST':
         message=request.POST.get('message')
@@ -20,6 +21,6 @@ def Send_Message(request):
                   message,
                   request.user.email,
                   [email])
-    context={'profile':profile,
+    context={'profile':profile,'user_profile':user_profile,
              'info':info}
     return render(request,'contact/contact.html',context)

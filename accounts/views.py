@@ -60,18 +60,23 @@ def index(request):
 def Get_Profile(request):
     #to return the current user who's log in the website
     profile = Profile.objects.get(user=request.user)
-    return render(request,'accounts/profile.html',{'profile': profile})
+    user_profile = Profile.objects.get(user=request.user)
+    return render(request,'accounts/profile.html',{'profile': profile,
+                                                   'user_profile': user_profile})
 
 @login_required(login_url='login')
 def Get_Others_Profile(request,profile):
     #to return the current user who's log in the website
     profile = Profile.objects.get(user=profile)
-    return render(request,'accounts/profile.html',{'other_profile': profile})
+    user_profile = Profile.objects.get(user=request.user)
+    return render(request,'accounts/profile.html',{'profile': profile
+        ,'user_profile': user_profile
+             })
 
 @login_required(login_url='login')
 def Update_Profile(request):
     profile = Profile.objects.get(user=request.user)
-    # user_profile = Profile.objects.get(user=request.user)
+    user_profile = Profile.objects.get(user=request.user)
     if request.method == 'POST':
         user_form = UserForm(request.POST, instance=request.user)
         profile_form = ProfileForm(request.POST, files=request.FILES,instance=profile)
@@ -87,6 +92,6 @@ def Update_Profile(request):
         profile_form = ProfileForm(instance=profile)
 
 
-    context = {'profile_form': profile_form, 'user_form': user_form,'profile': profile}
+    context = {'profile_form': profile_form, 'user_form': user_form,'profile': profile,'user_profile': user_profile}
     return render(request, 'accounts/update_profile.html', context)
 

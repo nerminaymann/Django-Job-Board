@@ -12,6 +12,7 @@ from .filters import JobFilter
 def Job_List(request):
     jobs= Job.objects.all()
     profile= Profile.objects.get(user=request.user)
+    user_profile = Profile.objects.get(user=request.user)
     categories= Category.objects.all()
 
     #Filters
@@ -27,6 +28,7 @@ def Job_List(request):
     context = {
         'jobs': page_obj,
         'profile': profile,
+        'user_profile': user_profile,
         'categories': categories,
         'myfilter':myfilter,
                }
@@ -55,6 +57,7 @@ def Job_List(request):
 @login_required(login_url='login')
 def Job_Detail(request,slug):
     profile= Profile.objects.get(user=request.user)
+    user_profile = Profile.objects.get(user=request.user)
     job = Job.objects.filter(slug=slug).first()
     if request.method == 'POST':
         form = ApplyForm(request.POST,files=request.FILES)
@@ -67,12 +70,13 @@ def Job_Detail(request,slug):
             print("donee22")
     else:
         form = ApplyForm()
-    context = {'job': job,'form':form,'profile':profile}
+    context = {'job': job,'form':form,'profile':profile,'user_profile':user_profile }
     return render(request, 'job/job_detail.html', context)
 
 @login_required(login_url='login')
 def Post_Job(request):
     profile= Profile.objects.get(user=request.user)
+    user_profile = Profile.objects.get(user=request.user)
     if request.method == 'POST':
         form = JobForm(request.POST,files=request.FILES)
 
@@ -83,5 +87,5 @@ def Post_Job(request):
             return redirect(reverse("Job_List"))
     else:
         form = JobForm()
-    context = {'form':form,'profile':profile}
+    context = {'form':form,'profile':profile,'user_profile':user_profile }
     return render(request, 'job/post_job.html', context)

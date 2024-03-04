@@ -79,8 +79,9 @@
     </div>
     <div class="right-side lg:pr-4">
     <div class="d-none d-xl-block">
+    
     <a href="{% url 'profile' %}">
-        <img src="{{ profile.profile_pic.url }}" class="header-avatar" alt="{{ profile.name }}" style="display: inline-block;
+        <img src="{{ user_profile.profile_pic.url }}" class="header-avatar" alt="{{ user_profile.name }}" style="display: inline-block;
           width: 40px;
           height: 40px;
           border-radius: 50%;
@@ -88,6 +89,7 @@
           background-position: center center;
           background-size: cover;">
     </a>
+    
     </div>
 {#    <div uk-drop="mode: click;offset:9" class="header_dropdown profile_dropdown border-t">#}
 {#                            <ul>#}
@@ -98,7 +100,7 @@
     </div>
 {% else %}
     <div class="phone_num d-none d-xl-block">
-    <a href="{% url 'login' %}">Log in</a>
+    <a href="{% url 'signup' %}">Sign Up</a>
     </div>
 {% endif %}    
 <div class="d-none d-lg-block">

@@ -15,6 +15,7 @@ from job.filters import JobFilter
 @login_required(login_url='login')
 def index(request):
     profile=Profile.objects.get(user=request.user)
+    user_profile = Profile.objects.get(user=request.user)
     profiles=Profile.objects.all()
     jobs=Job.objects.all()
     categories=Category.objects.all()
@@ -27,7 +28,7 @@ def index(request):
     # joblistnum = jobs.filter(category=category)
 
     myfilterr = JobFilterr(request.GET, queryset=jobs)
-    myfilter= JobFilter(request.GET, queryset=jobs)
+    # myfilter= JobFilter(request.GET, queryset=jobs)
 
     if myfilterr.is_valid():
         # myfilter = myfilterr
@@ -36,6 +37,7 @@ def index(request):
 
 
     context = {'profile':profile,
+               'user_profile':user_profile,
                'profiles':profiles,
                'categories':categories,
                'numOfJobs': numOfJobs,
@@ -43,7 +45,7 @@ def index(request):
                # 'category':category,
                'jobs':jobs,
                'myfilterr':myfilterr,
-               'myfilter':myfilter
+               # 'myfilter':myfilter
                }
     return render(request,'home/home.html',context)
 
@@ -65,6 +67,7 @@ def index(request):
 
 def Filter_Job_category(request,category):
     profile = Profile.objects.get(user=request.user)
+    user_profile = Profile.objects.get(user=request.user)
     jobs = Job.objects.filter(category=category)
     myfilter= JobFilter(request.GET, queryset=jobs)
     if myfilter.is_valid():
@@ -77,6 +80,7 @@ def Filter_Job_category(request,category):
     context = {
         'jobs': page_obj,
         'profile': profile,
+        'user_profile': user_profile,
         'numOfJobs': jobs,
         'myfilter':myfilter,
     }
