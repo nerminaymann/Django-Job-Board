@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'bootstrap4',
     'django_filters',
-
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
