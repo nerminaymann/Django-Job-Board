@@ -36,8 +36,6 @@ class Profile(models.Model):
 
 #SIGNAL
 #create new User -----> create new empty profile
-
-
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:

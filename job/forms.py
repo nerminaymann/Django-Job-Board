@@ -9,6 +9,6 @@ class ApplyForm(forms.ModelForm):
 class JobForm(forms.ModelForm):
     class Meta:
         model = Job
-        fields = ['title','job_type','job_nature','desc','salary','experience','category','job_img']
+        fields = ['title','job_type','job_nature','desc','salary','experience','category','job_img','location']
         # fields = '__all__'
         # exclude = ('slug')
